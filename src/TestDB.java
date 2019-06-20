@@ -3,18 +3,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+public class TestDB {
 
-public class DBEintrag {
-
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Informatik";
-    private static final String CONN_STRING
-            = "jdbc:mysql://localhost:3306/?user=root";
+    public static void main(String[] args) {
     
-    private String Aufgabe;
-    private String Deadline;
 
-    public void Eingabe() {
+
+    String USERNAME = "root";
+    String PASSWORD = "Informatik";
+    String CONN_STRING = "jdbc:mysql://localhost/todo";
+    
+    String eAufgabe = "blub";
+    String eDeadline = "blab";
 
         Connection con;
         PreparedStatement stmt;
@@ -26,8 +26,8 @@ public class DBEintrag {
             String sql = "INSERT INTO liste (Aufgabe, Deadline) VALUES (?, ?)";
             // Das wird benutzt, um jetzt ein Statement zu machen
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, "test");
-            stmt.setString(2, "test");
+            stmt.setString(1, eAufgabe);
+            stmt.setString(2, eDeadline);
 
             // Das stmt.executeUpdate() deint dazu, dass die Tabelle entsprechend der Eingabe aktualisiert wird
             stmt.executeUpdate();
@@ -38,13 +38,4 @@ public class DBEintrag {
             System.err.println(e); // Das ist unsere Exception bezogen auf SQL, sollte etwas nicht mit der SQL Syntax passen
         }
     }
-
-    public void setAufgabe(String aufgabe) {
-        this.Aufgabe = aufgabe;
-    }
-
-    public void setDeadline(String deadline) {
-        this.Deadline = deadline;
-    }
-
 }

@@ -41,9 +41,9 @@ public class MainFenster extends JFrame {
         JTextField aufgabeFeld = new JTextField(10);
         panel2.add(aufgabeFeld);
         
+        JTextField deadlineFeld = new JTextField(10);
+        panel2.add(deadlineFeld);
         
-        panel2.add(new JLabel("Deadline"));
-        panel2.add(new JTextField(10));
         
         
 
@@ -60,9 +60,16 @@ public class MainFenster extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 liste.add(new GUIAufgabe());
+                String eAufgabe = aufgabeFeld.getText();
+                String eDeadline = deadlineFeld.getText();
+                
+                DBEintrag eintrag = new DBEintrag();
+                eintrag.setAufgabe("test");
+                eintrag.setDeadline("test");
                 pack();
                 
             }
+            
         });
         
 
