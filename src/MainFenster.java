@@ -16,7 +16,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class MainFenster extends JFrame {
-    
 
     public MainFenster() {
         super("To-Do");
@@ -40,12 +39,9 @@ public class MainFenster extends JFrame {
         panel2.add(new JLabel("Aufgabe"));
         JTextField aufgabeFeld = new JTextField(10);
         panel2.add(aufgabeFeld);
-        
+
         JTextField deadlineFeld = new JTextField(10);
         panel2.add(deadlineFeld);
-        
-        
-        
 
         // Ein JPanel für die To-Do-Liste
         JPanel liste = new JPanel();
@@ -62,16 +58,17 @@ public class MainFenster extends JFrame {
                 liste.add(new GUIAufgabe());
                 String eAufgabe = aufgabeFeld.getText();
                 String eDeadline = deadlineFeld.getText();
-                
+
                 DBEintrag eintrag = new DBEintrag();
-                eintrag.setAufgabe("test");
-                eintrag.setDeadline("test");
+                eintrag.setAufgabe(eAufgabe);
+                eintrag.setDeadline(eDeadline);
+                eintrag.eingabe();
+
                 pack();
-                
+
             }
-            
+
         });
-        
 
     }
 }
