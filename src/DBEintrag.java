@@ -15,11 +15,11 @@ public class DBEintrag {
 
     private String aufgabe;
     private String deadline;
+    Connection con = null;
+    PreparedStatement stmt = null;
 
     public void eingabe() {
 
-        Connection con = null;
-        PreparedStatement stmt = null;
         try {
 
             // Das wird benutzt, um eine Verbidung mit der DBEintrag aufzubauen
@@ -35,27 +35,11 @@ public class DBEintrag {
             // Das stmt.executeUpdate() deint dazu, dass die Tabelle entsprechend der Eingabe aktualisiert wird
             stmt.executeUpdate();
             // hiermit wird die Verbidung zur DatenBank beendet
-            
 
         } catch (SQLException e) {
             System.err.println(e); // Das ist unsere Exception bezogen auf SQL, sollte etwas nicht mit der SQL Syntax passen
         } finally {
-
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    System.out.println(e);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    System.out.println(e);
-                }
-            }
-
+            close();
         }
 
     }
@@ -74,5 +58,20 @@ public class DBEintrag {
 
     public void setDeadline(String deadline) {
         this.deadline = deadline;
+    }
+
+    private void close() {
+        try {
+
+            if (stmt != null) {
+                stmt.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+
+        }
     }
 }

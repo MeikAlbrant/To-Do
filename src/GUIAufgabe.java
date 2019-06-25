@@ -6,15 +6,15 @@ import javax.swing.JPanel;
 
 
 public class GUIAufgabe extends JPanel {
-    private String aufgabenLabel;
-    private String deadlineLabel;
+    private String aufgabenLabel ;
+    private String deadlineLabel ;
     
-    public GUIAufgabe(){
+    public GUIAufgabe() throws Exception{
         setVisible(true);
         setLayout(new FlowLayout());
         
-        DBAusgabe ausgabe = new DBAusgabe();
-        ausgabe.Ausgabe();
+        TestAusgabe ausgabe = new TestAusgabe();
+        ausgabe.dbAuslesen();
         
         JLabel eintragAufgabe = new JLabel(aufgabenLabel);
         JLabel eintragDeadline = new JLabel(deadlineLabel);

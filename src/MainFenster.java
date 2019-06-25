@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class MainFenster extends JFrame {
+    
 
     public MainFenster() {
         super("To-Do");
@@ -55,7 +58,13 @@ public class MainFenster extends JFrame {
         neueAufgabe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                liste.add(new GUIAufgabe());
+                try {
+                    TestAusgabe ausgabe = new TestAusgabe();
+                    ausgabe.dbAuslesen();
+                    //liste.add(new GUIAufgabe());
+                } catch (Exception ex) {
+                    Logger.getLogger(MainFenster.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 String eAufgabe = aufgabeFeld.getText();
                 String eDeadline = deadlineFeld.getText();
 
